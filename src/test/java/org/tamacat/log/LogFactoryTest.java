@@ -19,10 +19,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.tamacat.log.impl.Log4j2Logger;
 import org.tamacat.log.impl.Log4jDiagnosticContext;
 import org.tamacat.log.impl.Log4jLogger;
 import org.tamacat.log.impl.NoneDiagnosticContext;
 import org.tamacat.util.ClassUtils;
+
+import org.tamacat.log.Log;
+import org.tamacat.log.LogFactory;
+import org.tamacat.log.LogFactoryTest;
+import org.tamacat.log.impl.Slf4jLogger;
 
 public class LogFactoryTest {
 
@@ -62,7 +68,8 @@ public class LogFactoryTest {
 
 	@Test
 	public void testLoadLogger() throws Exception {
-		assertTrue(LogFactory.SELF.loadLogger("test") instanceof Log4jLogger);
+		assertFalse(LogFactory.SELF.loadLogger("test") instanceof Log4j2Logger);
+		assertTrue(LogFactory.SELF.loadLogger("test") instanceof Slf4jLogger);
 
 		Log l1 = LogFactory.SELF.loadLogger("test");
 		Log l2 = LogFactory.SELF.loadLogger("test");
