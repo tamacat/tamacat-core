@@ -10,6 +10,12 @@
   <name>tamacat-core</name>
   <url>http://tamacat.org/</url>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <github.global.server>github</github.global.server>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
+  </properties>
+  
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -19,9 +25,9 @@
   </licenses>
 
   <scm>
-    <url>http://svn.code.sf.net/p/tamacat/code/branches/tamacat-core-1.5</url>
-    <connection>scm:svn:http://svn.code.sf.net/p/tamacat/code/branches/tamacat-core-1.5</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/tamacat/code/branches/tamacat-core-1.5</developerConnection>
+    <url>https://github.com/tamacat/tamacat-core</url>
+    <connection>scm:git:git://github.com/tamacat/tamacat-core.git</connection>
+    <developerConnection>scm:git:git@github.com:tamacat/tamacat-core.git</developerConnection>
   </scm>
 
   <dependencies>
@@ -31,7 +37,7 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -152,8 +158,34 @@
           </includes>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.12</version>
+        <configuration>
+          <message>Maven artifacts for ${project.version}</message>
+          <noJekyll>true</noJekyll>
+          <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+          <branch>refs/heads/mvn-repo</branch>
+          <includes>
+            <include>**/*</include>
+          </includes>
+          <repositoryName>tamacat.github.io</repositoryName>
+          <repositoryOwner>tamacat</repositoryOwner>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>deploy</phase>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
   <reporting>
     <plugins>
       <plugin>
@@ -181,14 +213,18 @@
     </plugins>
   </reporting>
 
+  <distributionManagement>
+    <repository>
+      <id>internal.repos</id>
+      <name>Temporary Staging Repository</name>
+      <url>file://${project.build.directory}/mvn-repo</url>
+    </repository>
+  </distributionManagement>
+
   <repositories>
     <repository>
       <id>tamacat.org</id>
-      <url>http://tamacat.org/maven2/</url>
+      <url>https://raw.github.com/tamacat/tamacat.github.io/mvn-repo/</url>
     </repository>
   </repositories>
-
-  <properties>
-    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
-  </properties>
 </project>
