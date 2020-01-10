@@ -173,7 +173,7 @@
           <includes>
             <include>**/*</include>
           </includes>
-          <repositoryName>tamacat.github.io</repositoryName>
+          <repositoryName>tamacat-core</repositoryName>
           <repositoryOwner>tamacat</repositoryOwner>
         </configuration>
         <executions>
