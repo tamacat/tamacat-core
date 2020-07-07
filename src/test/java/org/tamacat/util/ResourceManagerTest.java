@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.tamacat.log.Log;
 import org.tamacat.log.LogFactory;
-import org.tamacat.util.ResourceManager;
 
 public class ResourceManagerTest {
 

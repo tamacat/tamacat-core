@@ -25,8 +25,6 @@ import org.tamacat.log.impl.Log4jLogger;
 import org.tamacat.log.impl.NoneDiagnosticContext;
 import org.tamacat.util.ClassUtils;
 
-import org.tamacat.log.Log;
-import org.tamacat.log.LogFactory;
 import org.tamacat.log.LogFactoryTest;
 import org.tamacat.log.impl.Slf4jLogger;
 
@@ -56,7 +54,7 @@ public class LogFactoryTest {
 		assertTrue(logger.isWarnEnabled());
 		assertTrue(logger.isInfoEnabled());
 		assertTrue(logger.isDebugEnabled());
-		assertFalse(logger.isTraceEnabled());
+		assertTrue(logger.isTraceEnabled());
 	}
 
 	@Test

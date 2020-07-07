@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.tamacat.log.LogFactory;
-import org.tamacat.log.impl.Log4jLogger;
 
 public class Log4jLoggerTest {
 

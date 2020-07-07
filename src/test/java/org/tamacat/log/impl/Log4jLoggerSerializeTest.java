@@ -12,7 +12,6 @@ import java.io.ObjectOutputStream;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.tamacat.log.impl.Log4jLogger;
 import org.tamacat.util.IOUtils;
 
 public class Log4jLoggerSerializeTest extends TestCase {

@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.tamacat.di.define.BeanConstructorParam;
 import org.tamacat.di.define.BeanDefine;
 import org.tamacat.di.define.BeanDefineParam;
-import org.tamacat.di.impl.BeanCreator;
 import org.tamacat.di.xml.SpringBeanDefineHandler;
 import org.tamacat.log.LogFactory;
 
