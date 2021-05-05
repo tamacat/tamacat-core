@@ -132,4 +132,41 @@ public class PropertyUtilsTest {
     	Properties props2 = PropertyUtils.marge(null, null);
     	assertEquals(props2.size(), 0);
     }
+    
+    @Test
+    public void testDisableResolveSystemProperty() {
+    	assertFalse(PropertyUtils.disableResolveSystemProperty(null));
+
+    	Properties props = new Properties();
+    	assertFalse(PropertyUtils.disableResolveSystemProperty(props));
+    	
+    	props.setProperty("PropertyUtils.disableResolveSystemProperty", "true");
+    	assertTrue(PropertyUtils.disableResolveSystemProperty(props));
+    }
+    
+    @Test
+    public void testResolvSystemProperty() {
+    	Properties props1 = PropertyUtils.getProperties("test3.properties");
+    	assertEquals("${TEST_ENV_01}", props1.getProperty("key01"));
+    	assertEquals("TEST", props1.getProperty("key02"));
+    	
+    	System.setProperty("TEST_ENV_01", "TEST_01");
+    	System.setProperty("TEST_ENV_02", "TEST_02");
+    	Properties props2 = PropertyUtils.getProperties("test3.properties");
+    	assertEquals("TEST_01", props2.getProperty("key01"));
+    	assertEquals("TEST_02", props2.getProperty("key02"));
+    }
+    
+    @Test
+    public void testResolvSystemProperty_disabled() {
+    	Properties props1 = PropertyUtils.getProperties("test4.properties");
+    	assertEquals("${TEST_ENV_01}", props1.getProperty("key01"));
+    	assertEquals("${TEST_ENV_02:TEST}", props1.getProperty("key02"));
+    	
+    	System.setProperty("TEST_ENV_01", "TEST");
+    	System.setProperty("TEST_ENV_02", "TEST_02");
+    	Properties props2 = PropertyUtils.getProperties("test4.properties");
+    	assertEquals("${TEST_ENV_01}", props2.getProperty("key01"));
+    	assertEquals("${TEST_ENV_02:TEST}", props2.getProperty("key02"));
+    }
 }

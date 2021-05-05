@@ -10,6 +10,7 @@ import java.util.HashMap;
 import org.tamacat.di.define.BeanDefineParam;
 import org.tamacat.util.ClassUtils;
 import org.tamacat.util.StringUtils;
+import org.tamacat.util.SystemPropertyUtils;
 
 public class PropertyValueHandler {
 
@@ -196,10 +197,11 @@ public class PropertyValueHandler {
 	 * @since 1.4-20180510
 	 */
 	static String replaceEnvironmentVariable(String value) {
-		if (StringUtils.isNotEmpty(value) && value.startsWith("${") && value.endsWith("}")) {
-			String key = value.substring(2, value.length()-1);
-			return System.getenv(key);
-		}
-		return value;
+		return SystemPropertyUtils.resolvePlaceholders(value, true);
+		//if (StringUtils.isNotEmpty(value) && value.startsWith("${") && value.endsWith("}")) {
+		//	String key = value.substring(2, value.length()-1);
+		//	return System.getenv(key);
+		//}
+		//return value;
 	}
 }
