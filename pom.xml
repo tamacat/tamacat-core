@@ -47,6 +47,7 @@
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
       <version>2.3.5</version>
+      <scope>runtime</scope>
     </dependency>
     
     <dependency>
@@ -83,13 +84,13 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.2.7</version>
+      <version>1.2.8</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.7</version>
+      <version>1.2.8</version>
       <scope>test</scope>
     </dependency>
 
