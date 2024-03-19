@@ -42,7 +42,7 @@ public class Encrypt {
 	Cipher encrypter;
 	Cipher decrypter;
 	
-    public String encrypt(String plainText) {
+    public synchronized String encrypt(String plainText) {
 		try {
 			byte[] crypto = encrypter.doFinal(plainText.getBytes());
 	        byte[] str64 = Base64.getEncoder().encode(crypto);
@@ -52,7 +52,7 @@ public class Encrypt {
 		}
     }
     
-    public String decrypt(String encrypted) {
+    public synchronized String decrypt(String encrypted) {
     	try {
 	        byte[] str = Base64.getDecoder().decode(encrypted);
 	        byte[] text = decrypter.doFinal(str);
